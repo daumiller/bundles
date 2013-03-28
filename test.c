@@ -4,7 +4,7 @@
 
 int main(int argc, char **argv)
 {
-  bundle *app = Bundle_Read("C:\\MinGW\\msys\\1.0\\home\\dillona\\bundles\\test.app");
+  bundle *app = Bundle_Read("C:\\MinGW\\msys\\1.0\\home\\dillona\\bundles\\tチャットモンチーt.app");
   printf("pathBundle       : %s\n", app->pathBundle);
   printf("pathXml          : %s\n", app->pathXml);
   printf("Name             : %s\n", app->name);
@@ -26,3 +26,8 @@ int main(int argc, char **argv)
   Bundle_Free(app);
   return 0;
 }
+
+// _w
+// _wfopen
+// _wstat
+// _w...

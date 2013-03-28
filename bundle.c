@@ -11,6 +11,7 @@
 #include "mxml.h"
 #include "hashtable.h"
 #include "bundle.h"
+#include "wide.h"
 
 //==================================================================================================================================
 typedef mxml_node_t xmlNode;
@@ -42,7 +43,7 @@ bundle *Bundle_Read(char *path)
   if(!PathIsFile(bndl->pathXml))         { Bundle_Free(bndl); Bundle_Error = "bundle doesn't contain configuration xml"; return NULL; }
 
   //load configuration xml
-  FILE *fin = fopen(bndl->pathXml, "r"); if(!fin) { Bundle_Free(bndl); Bundle_Error = "unable to open bundle configuration xml"; return NULL; }
+  FILE *fin = Wide_fopen(bndl->pathXml, "r"); if(!fin) { Bundle_Free(bndl); Bundle_Error = "unable to open bundle configuration xml"; return NULL; }
   xmlNode *tree = mxmlLoadFile(NULL, fin, MXML_OPAQUE_CALLBACK);
 
   //parse file
@@ -109,7 +110,7 @@ BOOL Bundle_Write(bundle *bundle)
   }
 
   //attempt to write file
-  FILE *fout = fopen(bundle->pathXml, "w"); if(!fout) { mxmlDelete(xml); return FALSE; }
+  FILE *fout = Wide_fopen(bundle->pathXml, "w"); if(!fout) { mxmlDelete(xml); return FALSE; }
   int result = mxmlSaveFile(xml, fout, XmlBeautifier);
   fclose(fout);
   mxmlDelete(xml);
@@ -204,16 +205,16 @@ void Bundle_Free(bundle *bundle)
 //==================================================================================================================================
 BOOL PathIsDirectory(char *path)
 {
-  struct stat fs;
-  if(stat(path, &fs) != 0)       return FALSE;
+  struct _stat fs;
+  if(Wide_stat(path, &fs) != 0)       return FALSE;
   if((fs.st_mode & S_IFDIR) == 0) return FALSE;
   return TRUE;
 }
 //----------------------------------------------------------------------------------------------------------------------------------
 BOOL PathIsFile(char *path)
 {
-  struct stat fs;
-  if(stat(path, &fs) != 0)       return FALSE;
+  struct _stat fs;
+  if(Wide_stat(path, &fs) != 0)       return FALSE;
   if((fs.st_mode & S_IFREG) == 0) return FALSE;
   return TRUE;
 }
