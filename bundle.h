@@ -12,28 +12,28 @@ typedef struct
   char *pathBundle;
   char *pathXml;
   //----------------------
-  //standard bundle Keys
+  //standard bundle keys
   char *name;
-  char *identifier;
   char *icon;
   char *version;
+  char *identifier;
   char *launchDirectory;
   char *launchExecutable;
   //----------------------
-  //any extra Keys
-  uint32_t otherCount;
-  char **otherKey;
-  char **otherValue;
+  //additional keys
+  void *other;
   //----------------------
 } bundle;
 
 //==================================================================================================================================
 bundle *Bundle_Read(char *path);
-BOOL   *Bundle_Write(bundle *bundle);
+BOOL    Bundle_Write(bundle *bundle);
 char   *Bundle_GetKeyValue(bundle *bundle, char *key);
-char   *Bundle_SetKeyValue(bundle *bundle, char *key, char *value);
+void    Bundle_SetKeyValue(bundle *bundle, char *key, char *value);
+char  **Bundle_ListOtherKeys(bundle *bundle, int *count);
 void    Bundle_ApplyIcon(bundle *bundle);
-void   *Bundle_Free(bundle *bundle);
+void    Bundle_Launch(bundle *bundle, char **arguments, int argCount);
+void    Bundle_Free(bundle *bundle);
 
 //==================================================================================================================================
 #ifndef _BUNDLE_SOURCE_
