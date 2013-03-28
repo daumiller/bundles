@@ -5,7 +5,12 @@
 #define _BUNDLE_HEADER_
 
 //==================================================================================================================================
-typedef struct
+#ifndef BOOL
+#include <windows.h>
+#endif
+
+//==================================================================================================================================
+typedef struct s_bundle
 {
   //----------------------
   //paths
@@ -17,8 +22,9 @@ typedef struct
   char *icon;
   char *version;
   char *identifier;
-  char *launchDirectory;
-  char *launchExecutable;
+  char *mainExecutable;
+  char *libraryDirectory;
+  char *workingDirectory;
   //----------------------
   //additional keys
   void *other;
@@ -31,8 +37,9 @@ BOOL    Bundle_Write(bundle *bundle);
 char   *Bundle_GetKeyValue(bundle *bundle, char *key);
 void    Bundle_SetKeyValue(bundle *bundle, char *key, char *value);
 char  **Bundle_ListOtherKeys(bundle *bundle, int *count);
-void    Bundle_ApplyIcon(bundle *bundle);
-void    Bundle_Launch(bundle *bundle, char **arguments, int argCount);
+BOOL    Bundle_ApplyIcon(bundle *bundle);
+BOOL    Bundle_Launch(bundle *bundle, char **arguments, int argCount);
+BOOL    Bundle_LaunchW(bundle *bundle, wchar_t **arguments, int argCount);
 void    Bundle_Free(bundle *bundle);
 
 //==================================================================================================================================
