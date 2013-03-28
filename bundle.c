@@ -84,6 +84,68 @@ bundle *Bundle_Read(char *path)
   Bundle_Error = NULL;
   return(bundle);
 }
+//==================================================================================================================================
+bundle *Bundle_ReadW(wchar_t *path)
+{
+  //allocate bundle
+  bundle *bundle = calloc(1, sizeof(struct s_bundle));
+  if(bundle == NULL) { Bundle_Error = "unable to allocate memory"; return NULL; }
+  bundle->other = malloc(sizeof(hash_table));
+  if(!bundle->other) { free(bundle); Bundle_Error = "unable to allocate memory"; return NULL; }
+  ht_init(bundle->other, HT_NONE, 0.05);
+
+  //build paths
+  char *cPath = WideToUTF8(path);
+  bundle->pathBundle = strdup(cPath);                          if(!bundle->pathBundle) { free(cPath); Bundle_Free(bundle); Bundle_Error = "unable to allocate memory"; return NULL; }
+  bundle->pathXml = malloc(sizeof(char) * (strlen(cPath)+12)); if(!bundle->pathXml)    { free(cPath); Bundle_Free(bundle); Bundle_Error = "unable to allocate memory"; return NULL; }
+  sprintf(bundle->pathXml, "%s%s\0", bundle->pathBundle, "\\bundle.xml");
+  free(cPath);
+  
+  //initial filesystem checks
+  if(!PathIsDirectory(bundle->pathBundle)) { Bundle_Free(bundle); Bundle_Error = "specified path is not a directory/bundle"; return NULL; }
+  if(!PathIsFile(bundle->pathXml))         { Bundle_Free(bundle); Bundle_Error = "bundle doesn't contain configuration xml"; return NULL; }
+
+  //load configuration xml
+  FILE *fin = Wide_fopen(bundle->pathXml, "r"); if(!fin) { Bundle_Free(bundle); Bundle_Error = "unable to open bundle configuration xml"; return NULL; }
+  xmlNode *tree = mxmlLoadFile(NULL, fin, MXML_OPAQUE_CALLBACK);
+
+  //parse file
+  xmlNode *curr = tree;
+  char *currElement, *currKey, *currValue;
+  while(curr != NULL)
+  {
+    currElement = (char *)mxmlGetElement(curr);
+
+    if(currElement == NULL)
+      curr = mxmlWalkNext(curr, tree, MXML_DESCEND);
+    else if(stricmp(currElement, "key") == 0)
+    {
+      currKey = (char *)mxmlGetOpaque(curr);
+      while(1)
+      {
+        curr = mxmlGetNextSibling(curr);            if(!curr)        break;
+        currElement = (char *)mxmlGetElement(curr); if(!currElement) continue;
+        if(stricmp(currElement, "key"  ) == 0) break;
+        if(stricmp(currElement, "value") == 0)
+        {
+          currValue = (char *)mxmlGetOpaque(curr);
+          Bundle_SetKeyValue(bundle, currKey, currValue);
+          break;
+        }
+      }
+      curr = mxmlGetNextSibling(curr);
+    }
+    else
+      curr = mxmlWalkNext(curr, tree, MXML_DESCEND);
+  }
+
+  //clean up
+  fclose(fin);
+  mxmlDelete(tree);
+
+  Bundle_Error = NULL;
+  return(bundle);
+}
 //----------------------------------------------------------------------------------------------------------------------------------
 BOOL Bundle_Write(bundle *bundle)
 {

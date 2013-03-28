@@ -33,6 +33,7 @@ typedef struct s_bundle
 
 //==================================================================================================================================
 bundle *Bundle_Read(char *path);
+bundle *Bundle_ReadW(wchar_t *path);
 BOOL    Bundle_Write(bundle *bundle);
 char   *Bundle_GetKeyValue(bundle *bundle, char *key);
 void    Bundle_SetKeyValue(bundle *bundle, char *key, char *value);
