@@ -2,7 +2,7 @@ The short overview:
   * This project, bundles, is 3-clause BSD licensed.
   * Dependency 1/2, Mini-XML, is LGPL with very generous exceptions for non-modified linking (how we're using it).
   * Dependency 2/2, hashtable, is 3-clause BSD.
-See below for copyright notices, and specific license details.
+See below for copyright notices and specific license details.
 
 
 This project links to the "Mini-XML" library, which is Copyright 2003-2010 by Michael R Sweet.
