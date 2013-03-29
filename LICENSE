@@ -1,0 +1,67 @@
+The short overview:
+  * This project, bundles, is 3-clause BSD licensed.
+  * Dependency 1/2, Mini-XML, is LGPL with very generous exceptions for non-modified linking (how we're using it).
+  * Dependency 2/2, hashtable, is 3-clause BSD.
+See below for copyright notices, and specific license details.
+
+
+This project links to the "Mini-XML" library, which is Copyright 2003-2010 by Michael R Sweet.
+    1. Static linking of applications to the Mini-XML library
+    does not constitute a derivative work and does not require
+    the author to provide source code for the application, use
+    the shared Mini-XML libraries, or link their applications
+    against a user-supplied version of Mini-XML.
+    If you link the application to a modified version of
+    Mini-XML, then the changes to Mini-XML must be provided
+    under the terms of the LGPL2 in sections 1, 2, and 4.
+    2. You do not have to provide a copy of the Mini-XML license
+    with programs that are linked to the Mini-XML library, nor
+    do you have to identify the Mini-XML license in your
+    program or documentation as required by section 6 of the
+    LGPL2.
+
+This project links to the "hashtable" library, which is Copyright (c) 2012, Dane Larsen; All rights reserved.
+The "hashtable" library is redistributed under the following terms:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
+        * Redistributions of source code must retain the above copyright
+          notice, this list of conditions and the following disclaimer.
+        * Redistributions in binary form must reproduce the above copyright
+          notice, this list of conditions and the following disclaimer in the
+          documentation and/or other materials provided with the distribution.
+        * Neither the name of the owner nor the names of its contributors may 
+          be used to endorse or promote products derived from this software 
+          without specific prior written permission.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+    ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+    DISCLAIMED. IN NO EVENT SHALL DANE LARSEN BE LIABLE FOR ANY DIRECT, INDIRECT, 
+    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+    LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+    OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+    LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE 
+    OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+    ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+All other code is Copyright © 2012-2013 Dillon Aumiller; redistributable under the following terms:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
+        * Redistributions of source code must retain the above copyright
+          notice, this list of conditions and the following disclaimer.
+        * Redistributions in binary form must reproduce the above copyright
+          notice, this list of conditions and the following disclaimer in the
+          documentation and/or other materials provided with the distribution.
+        * Neither the name of the owner nor the names of its contributors may 
+          be used to endorse or promote products derived from this software 
+          without specific prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+    ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+    DISCLAIMED. IN NO EVENT SHALL DANE LARSEN BE LIABLE FOR ANY DIRECT, INDIRECT, 
+    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+    LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+    OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+    LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE 
+    OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+    ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
