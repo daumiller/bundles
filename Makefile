@@ -20,6 +20,10 @@ assoc : programs/Bundle_Association.c $(objects) $(statics)
 	gcc $(cflags) -c programs/Bundle_Association.c -o Bundle_Association.o
 	gcc Bundle_Association.o $(objects) $(statics) -o Bundle_Association.exe -mwindows
 
+lib : bundle.o wide.o
+	ar crvs bundle.a $(objects) $(statics)
+	ranlib bundle.a
+
 test : programs/test.c $(objects) $(statics)
 	gcc $(cflags) -c programs/test.c -o test.o
 	gcc test.o $(objects) $(statics) -o test.exe
