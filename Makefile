@@ -29,5 +29,6 @@ test : programs/test.c $(objects) $(statics)
 	gcc test.o $(objects) $(statics) -o test.exe
 
 clean :
+	rm -f *.a
 	rm -f *.o
 	rm -f *.exe
