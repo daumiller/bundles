@@ -16,6 +16,10 @@ icon : programs/Bundle_ApplyIcon.c $(objects) $(statics)
 	gcc $(cflags) -c programs/Bundle_ApplyIcon.c -o Bundle_ApplyIcon.o
 	gcc Bundle_ApplyIcon.o $(objects) $(statics) -o Bundle_ApplyIcon.exe -mwindows
 
+assoc : programs/Bundle_Association.c $(objects) $(statics)
+	gcc $(cflags) -c programs/Bundle_Association.c -o Bundle_Association.o
+	gcc Bundle_Association.o $(objects) $(statics) -o Bundle_Association.exe -mwindows
+
 test : programs/test.c $(objects) $(statics)
 	gcc $(cflags) -c programs/test.c -o test.o
 	gcc test.o $(objects) $(statics) -o test.exe
