@@ -1,26 +1,23 @@
-statics = mxml.a hashtable.a
-
+cflags  = -I. -I./bundle -I./depends -std=c99
+statics = depends/mxml.a depends/hashtable.a
 objects = bundle.o wide.o
 
-bundle.o : bundle.c
-	gcc -c bundle.c -o bundle.o -std=c99
+bundle.o : bundle/bundle.c
+	gcc $(cflags) -c bundle/bundle.c -o bundle.o
 
-wide.o : wide.c
-	gcc -c wide.c -o wide.o -std=c99
+wide.o : bundle/wide.c
+	gcc $(cflags) -c bundle/wide.c -o wide.o
 
-launch : Bundle_Launch.c $(objects) $(statics)
-	rm -f Bundle_Launch.exe
-	gcc -c Bundle_Launch.c -o Bundle_Launch.o -std=c99
+launch : programs/Bundle_Launch.c $(objects) $(statics)
+	gcc $(cflags) -c programs/Bundle_Launch.c -o Bundle_Launch.o
 	gcc Bundle_Launch.o $(objects) $(statics) -o Bundle_Launch.exe -mwindows
 
-icon : Bundle_ApplyIcon.c $(objects) $(statics)
-	rm -f Bundle_ApplyIcon.exe
-	gcc -c Bundle_ApplyIcon.c -o Bundle_ApplyIcon.o -std=c99
+icon : programs/Bundle_ApplyIcon.c $(objects) $(statics)
+	gcc $(cflags) -c programs/Bundle_ApplyIcon.c -o Bundle_ApplyIcon.o
 	gcc Bundle_ApplyIcon.o $(objects) $(statics) -o Bundle_ApplyIcon.exe -mwindows
 
-test : test.c $(objects) $(statics)
-	rm -f test.exe
-	gcc -c test.c -o test.o -std=c99
+test : programs/test.c $(objects) $(statics)
+	gcc $(cflags) -c programs/test.c -o test.o
 	gcc test.o $(objects) $(statics) -o test.exe
 
 clean :

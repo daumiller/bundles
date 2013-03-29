@@ -307,6 +307,7 @@ BOOL Bundle_ApplyIcon(bundle *bundle)
   SHChangeNotify(SHCNE_UPDATEITEM, SHCNF_PATH , wBundlePath, NULL);
   SHChangeNotify(SHCNE_ATTRIBUTES, SHCNF_PATH , wBundlePath, NULL);
   SHChangeNotify(SHCNE_UPDATEDIR , SHCNF_PATH , wBundlePath, NULL);
+  SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, NULL, NULL); //<-- SHOULDN'T be needed...
 
   free(wBundlePath);
   Bundle_Error = NULL;
