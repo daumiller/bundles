@@ -5,6 +5,7 @@
 // Customize defines, recompile (with an icon, probably), and place inside final application bundle.
 // Use this executable as your file-type association handler.
 // It will take any passed arguments (files to open), and pass them on to a newly launched instance of its containing bundle.
+// (Associating your MainExecutable may work in most cases; but not when relying on LibraryDirectory or WorkingDirectory settings.)
 //==================================================================================================================================
 #undef   __STRICT_ANSI__
 #include <windows.h>
