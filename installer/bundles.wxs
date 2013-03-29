@@ -60,7 +60,6 @@
     <UIRef Id="WixUI_Common" />
     <UIRef Id="UIChooseInstallDir" />
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
-    <WixVariable Id="WixUILicenseRtf" Value="" />
     <Media Id="1" Cabinet="Bundles.cab" EmbedCab="yes" DiskPrompt="Installation Media" />
     <Property Id="DiskPrompt" Value="Bundles Installation" />
     <Directory Id="TARGETDIR" Name="SourceDir">
